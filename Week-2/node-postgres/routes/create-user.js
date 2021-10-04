@@ -1,3 +1,5 @@
+const db = require('../database/connection.js');
+
 function get(request, response) {
   response.send(/*html*/ `
     <form action="create-user" method="POST">
@@ -17,8 +19,10 @@ function get(request, response) {
 }
 
 function post(request, response) {
+  const values = [request.body.username, request.body.age];
+  db.query('INSERT INTO users(username, age) VALUES($1, $2)', [values]);
   console.log(request.body); // e.g. { username: "oli", ... }
-  response.redirect("/");
+  response.redirect('/');
 }
 
 module.exports = { get, post };

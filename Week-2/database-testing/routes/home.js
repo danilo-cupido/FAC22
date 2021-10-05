@@ -1,9 +1,8 @@
-const db = require("../database/connection.js");
-const layout = require("../layout.js");
+const { getUsers } = require('../database/model.js');
+const layout = require('../layout.js');
 
 function get(request, response) {
-  db.query("SELECT * FROM users").then((result) => {
-    const users = result.rows;
+  getUsers().then((users) => {
     const userList = users.map((user) => {
       return /*html*/ `
       <li>
@@ -17,10 +16,10 @@ function get(request, response) {
     `;
     });
     const html = layout(
-      "Users",
+      'Users',
       /*html*/ `
       <h2>Users</h2>
-      <ul>${userList.join("")}</ul>
+      <ul>${userList.join('')}</ul>
       <a href="/users/create">New user +</a>
     `
     );

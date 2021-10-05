@@ -34,12 +34,3 @@ it('you can delete a user from the / route', () => {
   cy.get("button[value='1']").click();
   cy.should('not.exist', 'Sery1976');
 });
-
-// Challenge 2: modularise queries
-// Move the rest of the DB queries into model.js.
-// Make sure all the tests keep passing!
-
-// Write a createUser function to insert new users
-// Write a deleteUser function to delete a user
-// Write a getPosts function to select all the blog posts
-// Refactor your route handlers to use the new model functions

@@ -1,14 +1,19 @@
-const express = require("express");
+process.on('unhandledRejection', (error) => {
+  console.error(error);
+  process.exit(1);
+});
 
-const home = require("./routes/home.js");
-const tryCatch = require("./routes/tryCatch.js");
-const rejection = require("./routes/rejection.js");
+const express = require('express');
+
+const home = require('./routes/home.js');
+const tryCatch = require('./routes/tryCatch.js');
+const rejection = require('./routes/rejection.js');
 
 const server = express();
 
-server.get("/", home.get);
-server.get("/try-catch", tryCatch.get);
-server.get("/rejection", rejection.get);
+server.get('/', home.get);
+server.get('/try-catch', tryCatch.get);
+server.get('/rejection', rejection.get);
 
 const PORT = process.env.PORT || 3000;
 

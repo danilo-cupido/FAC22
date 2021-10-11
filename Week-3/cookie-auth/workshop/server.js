@@ -56,25 +56,71 @@ server.get('/', (request, response) => {
 //   response.redirect('/');
 // });
 
+// -----------------------------------------------------------
+
+// CHALLENGE 1: stateless auth
+
+// server.get('/login', (request, response) => {
+//   const userInfo = {
+//     id: 1,
+//     username: 'danilo',
+//     admin: true,
+//   };
+//   response.cookie('user', userInfo, {
+//     httpOnly: true,
+//     maxAge: 1000 * 60,
+//     sameSite: 'lax',
+//     signed: true,
+//   });
+//   response.redirect('/');
+// });
+
+// server.get('/logout', (request, response) => {
+//   response.clearCookie('user');
+//   response.redirect('/');
+// });
+
+// -----------------------------------------------------------
+
+// CHALLENGE 2: session auth
+
+const crypto = require('crypto');
+
+let sessions = {};
+
+server.get('/', (request, response) => {
+  const sid = request.signedCookies.sid;
+  if (sid) {
+    const userInfo = sessions[sid];
+    console.log(userInfo);
+  }
+  response.send('<h1>Hello</h1>');
+});
+
 server.get('/login', (request, response) => {
+  const sid = crypto.randomBytes(18).toString('base64');
   const userInfo = {
     id: 1,
     username: 'danilo',
     admin: true,
   };
-  response.cookie('user', userInfo, {
+  sessions[sid] = userInfo;
+  response.cookie('sid', sid, {
     httpOnly: true,
-    maxAge: 1000 * 60,
-    sameSite: 'lax',
+    maxAge: 60,
     signed: true,
   });
   response.redirect('/');
 });
 
 server.get('/logout', (request, response) => {
-  response.clearCookie('user');
+  const sid = request.signedCookies.sid;
+  delete sessions[sid];
+  response.clearCookie('sid');
   response.redirect('/');
 });
+
+// -----------------------------------------------------------
 
 const PORT = process.env.PORT || 3000;
 

@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "email": "dssdv@fdbd.com",
+      "password": "pass123",
+      "id": 1633958024363
+    },
+    {
+      "email": "srgs@fdv.com",
+      "hashedPassword": "1d4598d1949b47f7f211134b639ec32238ce73086a83c2f745713b3f12f817e5",
+      "id": 1633958825889
+    },
+    {
+      "email": "abc@hey.com",
+      "password": "4821b1cfc4a5fde3a1138275727106fc7d79479101b81d1d5f680192b1de7327",
+      "id": 1633958994238
+    },
+    {
+      "email": "abcd@hey.com",
+      "password": "72577610f800bc5a53a7aa6fecd0173806f0a15c186aa25be6dfa0fb582dd3a5",
+      "id": 1633959987019
+    },
+    {
+      "email": "abcd@fac.com",
+      "password": "2e606e2ab926e03f7affa153d5de1ea18c9064654c25d58ff2bfcfabd8b3f670",
+      "id": 1633960222061
+    },
+    {
+      "email": "cba@fac.com",
+      "password": "$2a$10$KdJXLgUvJD79UqVLPy8dz.q/RxzpYbkzopTjYXtcfvYJk.1IeEFpy",
+      "id": 1633961219395
+    },
+    {
+      "email": "cbas@fac.com",
+      "password": "$2a$10$uRzAFrmGF0yoHyfkTktXGuNrqcHGI7.i8mJHC.gZ/jGGOUfMkX4PW",
+      "id": 1633961747824
+    }
+  ]
+}

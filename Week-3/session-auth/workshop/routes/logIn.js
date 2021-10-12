@@ -1,4 +1,4 @@
-const auth = require("../auth.js");
+const auth = require('../auth.js');
 
 function get(request, response) {
   response.send(`
@@ -15,8 +15,17 @@ function get(request, response) {
 
 function post(request, response) {
   const { email, password } = request.body;
-  console.log("Logging in...");
-  response.redirect("/");
+  auth
+    .verifyUser(email, password)
+    .then(auth.saveUserSession)
+    .then((sid) => {
+      response.cookie('sid', sid, auth.COOKIE_OPTIONS);
+      response.redirect('/');
+    })
+    .catch((error) => {
+      console.error(error);
+      response.send(`<h1>User not found</h1>`);
+    });
 }
 
 module.exports = { get, post };

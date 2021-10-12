@@ -1,4 +1,4 @@
-const db = require("./connection.js");
+const db = require('./connection.js');
 
 function createUser(email, hash, name) {
   const INSERT_USER = `
@@ -18,15 +18,32 @@ function getUser(email) {
 }
 
 function getSession(sid) {
-  const SELECT_SESSION = "SELECT data FROM sessions WHERE sid=$1";
+  const SELECT_SESSION = 'SELECT data FROM sessions WHERE sid=$1';
   return db.query(SELECT_SESSION, [sid]).then((result) => {
     const singleResult = result.rows[0];
     return singleResult && singleResult.data;
   });
 }
 
+function createSession(sid, data) {
+  const INSERT_SESSION = `
+    INSERT INTO sessions (sid, data) VALUES ($1, $2)
+    RETURNING sid
+  `;
+  return db
+    .query(INSERT_SESSION, [sid, data])
+    .then((result) => result.rows[0].sid);
+}
+
+function deleteSession(sid) {
+  const DELETE_SESSION = 'DELETE FROM sessions WHERE sid=$1';
+  return db.query(DELETE_SESSION, [sid]);
+}
+
 module.exports = {
   createUser,
   getUser,
   getSession,
+  createSession,
+  deleteSession,
 };

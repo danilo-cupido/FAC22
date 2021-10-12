@@ -8,18 +8,27 @@
   </head>
   <body>
     <h1>Create an account</h1>
-    <form>
+    <form id="form">
       <label for="email">Email <span aria-hidden="true">*</span></label>
-      <input id="email" />
+      <input id="email" type="email" aria-describedby="emailError" required />
+      <div id="emailError"></div>
 
       <label for="password">Password <span aria-hidden="true">*</span></label>
       <div id="passwordRequirements">
         Passwords must contain at least one number, and contain at least 8
         characters
       </div>
-      <input id="password" aria-describedby="passwordRequirements" />
+      <input
+        id="password"
+        aria-describedby="passwordRequirements passwordError"
+        type="password"
+        pattern=".*\d.*"
+        minlength="8"
+        required
+      />
+      <div id="passwordError"></div>
 
-      <button>Sign up</button>
+      <button id="submitBtn">Sign up</button>
     </form>
     <script src="index.js"></script>
   </body>

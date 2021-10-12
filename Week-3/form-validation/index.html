@@ -9,11 +9,15 @@
   <body>
     <h1>Create an account</h1>
     <form>
-      <label for="email">Email</label>
+      <label for="email">Email <span aria-hidden="true">*</span></label>
       <input id="email" />
 
-      <label for="password">Password</label>
-      <input id="password" />
+      <label for="password">Password <span aria-hidden="true">*</span></label>
+      <div id="passwordRequirements">
+        Passwords must contain at least one number, and contain at least 8
+        characters
+      </div>
+      <input id="password" aria-describedby="passwordRequirements" />
 
       <button>Sign up</button>
     </form>

@@ -34,6 +34,11 @@
       "email": "cbas@fac.com",
       "password": "$2a$10$uRzAFrmGF0yoHyfkTktXGuNrqcHGI7.i8mJHC.gZ/jGGOUfMkX4PW",
       "id": 1633961747824
+    },
+    {
+      "email": "hi@ciao.com",
+      "password": "$2a$10$GcSVRl.sFQPEPbi1H.kAwOB5bGDSBWOLqtnB59pg4eTwIlyd7uYd.",
+      "id": 1633962979100
     }
   ]
 }

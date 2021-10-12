@@ -19,6 +19,7 @@ function get(request, response) {
 
 function post(request, response) {
   const { email, password } = request.body;
+  console.log(request.body);
   bcrypt
     .hash(password, 10)
     .then((hash) =>

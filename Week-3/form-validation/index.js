@@ -14,6 +14,14 @@ inputs.forEach((i) => {
     const errorContainer = form.querySelector('#' + errorId);
     errorContainer.textContent = i.validationMessage;
   });
+  i.addEventListener('input', () => {
+    i.setAttribute('aria-invalid', false);
+
+    const errorId = i.id + 'Error';
+    // find the div we're removing the error from
+    const errorContainer = form.querySelector('#' + errorId);
+    errorContainer.textContent = '';
+  });
 });
 
 form.addEventListener('submit', (event) => {

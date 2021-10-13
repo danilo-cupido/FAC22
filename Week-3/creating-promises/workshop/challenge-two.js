@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 /*
  *
@@ -10,8 +10,21 @@ const path = require("path");
  */
 
 function readFilePromise(filePath) {
-  //
+  const myPromise = new Promise((resolve, reject) => {
+    fs.readFile(filePath, (error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+  return myPromise;
 }
+
+readFilePromise('./test.txt')
+  .then((contents) => console.log(contents))
+  .catch((error) => console.error(error));
 
 /*
  *
@@ -35,20 +48,20 @@ function readFilePromise(filePath) {
  *
  *
  */
-const test = require("tape");
+const test = require('tape');
 
-test("readFilePromise returns a promise", (t) => {
-  const testPath = path.join(__dirname, "test.txt");
+test('readFilePromise returns a promise', (t) => {
+  const testPath = path.join(__dirname, 'test.txt');
   const result = readFilePromise(testPath);
   t.true(
     result instanceof Promise,
-    "readFilePromise should return a Promise object"
+    'readFilePromise should return a Promise object'
   );
   if (result) {
     result.then((contents) => {
       t.equal(
         contents.toString(),
-        "hello",
+        'hello',
         `readFilePromise("./test/txt") should be should be 'hello', received '${contents}'`
       );
       t.end();
@@ -58,18 +71,18 @@ test("readFilePromise returns a promise", (t) => {
   }
 });
 
-test("readFilePromise rejects if an error occurs", (t) => {
-  const result = readFilePromise("notReal.psd");
+test('readFilePromise rejects if an error occurs', (t) => {
+  const result = readFilePromise('notReal.psd');
   if (result) {
     result
       .then(() => {
-        t.fail("Nonexistent file should cause readFilePromise to reject");
+        t.fail('Nonexistent file should cause readFilePromise to reject');
         t.end();
       })
       .catch((error) => {
         t.ok(
           error instanceof Error,
-          "readFilePromise should reject with an Error object"
+          'readFilePromise should reject with an Error object'
         );
         t.equal(
           error.message,

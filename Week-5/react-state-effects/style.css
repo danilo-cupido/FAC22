@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;500&family=Lato&family=Oswald&family=Raleway:wght@300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inconsolata', monospace;
+  background-color: #151629;
+  color: aliceblue;
+  margin-top: 2rem;
+}
+
+.stylishBtn {
+  background-color: #1c1b35;
+  color: aliceblue;
+  width: 20rem;
+  padding: 0.6rem;
+
+  font-family: 'Inconsolata', monospace;
+  font-size: 17px;
+
+  border: 2px solid rgb(14, 187, 218);
+  border-radius: 7px;
+  box-shadow: 0px 3px 2px 0px rgba(14, 187, 218, 0.5);
+
+  transition: all 0.5sec;
+}
+
+.stylishBtn:hover {
+  box-shadow: 0px 4px 10px 0px rgba(23, 207, 240, 0.3);
+
+  transform: translateY(-3%);
+  cursor: pointer;
+}

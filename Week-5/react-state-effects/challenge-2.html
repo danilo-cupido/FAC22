@@ -2,6 +2,7 @@
 <html lang="en">
   <meta charset="utf-8" />
   <title>Component Proponent | FAC React</title>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
 
   <body>
     <!-- These scripts will make React and ReactDOM globally available. -->
@@ -13,20 +14,54 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      const root = document.getElementById("root");
+      const root = document.getElementById('root');
 
       function Toggle(props) {
         const [open, setOpen] = React.useState(false);
+
+        React.useEffect(() => {
+          open === true
+            ? (document.title = 'Mouse is here')
+            : (document.title = 'Where is Mouse?');
+        });
         return (
           <div>
-            <button onClick={() => setOpen(!open)}>Toggle</button>
+            <button className={props.className} onClick={() => setOpen(!open)}>
+              Tell me where Mouse is
+            </button>
             {open ? <div>{props.children}</div> : null}
           </div>
         );
       }
 
+      function MousePosition(props) {
+        const [x, setX] = React.useState(0);
+        const [y, setY] = React.useState(0);
+
+        React.useEffect(() => {
+          function handleMouseMove(event) {
+            setX(event.x);
+            setY(event.y);
+          }
+          window.addEventListener('mousemove', handleMouseMove);
+          function cleanup() {
+            window.removeEventListener('mousemove', handleMouseMove);
+          }
+          return cleanup;
+        }, []);
+        return (
+          <pre>
+            {x}:{y}
+          </pre>
+        );
+      }
+
       function App() {
-        return <Toggle>This text is hidden until the button is clicked</Toggle>;
+        return (
+          <Toggle className="stylishBtn">
+            <MousePosition />
+          </Toggle>
+        );
       }
 
       ReactDOM.render(<App />, root);

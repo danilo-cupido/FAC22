@@ -13,21 +13,37 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      const root = document.getElementById("root");
+      const root = document.getElementById('root');
 
       function Title(props) {
-        return <h1>{props.children}</h1>;
+        return <h2>{props.children}</h2>;
       }
 
       function Page(props) {
         return <div className="page">{props.children}</div>;
       }
 
+      function Card(props) {
+        return (
+          <div>
+            <h3>{props.title}</h3>
+            <img src={props.image} alt="The Planet Saturn" />
+            <h4>{props.children}</h4>
+          </div>
+        );
+      }
+
       function App() {
         return (
           <Page>
+            <h1>Welcome to my page</h1>
             <Title>Hello world!</Title>
-            <p>Welcome to my page</p>
+            <Card
+              title="Saturn"
+              image="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1074&q=80"
+            >
+              <p>That is a cool Planet!</p>
+            </Card>
           </Page>
         );
       }

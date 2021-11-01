@@ -1,3 +1,5 @@
+// We are not using this file anynmore
+
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../components/layout';
